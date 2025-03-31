@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp( ProviderScope(child: MyApp()));
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,17 +21,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final nameProvider=Provider<String>((ref)=>'Mohamed');
+final nameProvider = Provider<String>((ref) => 'Mohamed');
 
-class MyHomePage extends ConsumerWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final name = ref.watch(nameProvider);
+  Widget build(BuildContext context) {
+
     return Scaffold(
-      body: Center(
-        child: Text(name),
+      body: Consumer(
+        builder: (context, ref, child) {
+          final name = ref.watch(nameProvider);
+
+          return Center(
+            child: Text(name),
+          );
+        },
       ),
     );
   }
