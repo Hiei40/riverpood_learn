@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:untitled4/second.dart';
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -36,8 +37,9 @@ class MyHomePage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Second()));
           //الشكل الجديد
-          ref.read(nameProvider.notifier).state++;
+          // ref.read(nameProvider.notifier).state++;
 
           //الشكل القديم
          // ref.read(nameProvider.state).state++;
