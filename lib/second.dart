@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
-final fetch=FutureProvider<String>((ref)=>fetchdata());
+final fetch=FutureProvider.autoDispose<String>((ref)=>fetchdata());
 
 Future<String> fetchdata() async{
   var response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
