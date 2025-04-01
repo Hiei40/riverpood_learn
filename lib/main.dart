@@ -21,23 +21,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final nameProvider = Provider<String>((ref) => 'Mohamed');
+final nameProvider = StateProvider<int>((ref) => 0);
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final name = ref.watch(nameProvider);
 
     return Scaffold(
-      body: Consumer(
-        builder: (context, ref, child) {
-          final name = ref.watch(nameProvider);
+      body: Center(
+        child: Text(name.toString(), style: const TextStyle(fontSize: 24)),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //الشكل الجديد
+          ref.read(nameProvider.notifier).state++;
 
-          return Center(
-            child: Text(name),
-          );
+          //الشكل القديم
+         // ref.read(nameProvider.state).state++;
+
         },
+        child: const Icon(Icons.add),
       ),
     );
   }
